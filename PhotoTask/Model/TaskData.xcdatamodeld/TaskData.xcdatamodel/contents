@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Tasks" representedClassName="Tasks" syncable="YES">
+        <attribute name="goalPages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="progressPages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="taskEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskName" optional="YES" attributeType="String"/>
+        <attribute name="tasksID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="taskStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="taskState" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="TodaysTask" representedClassName="TodaysTask" syncable="YES">
+        <attribute name="dailyID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="dailyMemo" optional="YES" attributeType="String"/>
+        <attribute name="dailyPhoto" optional="YES" attributeType="Binary"/>
+        <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+</model>

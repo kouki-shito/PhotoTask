@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct PhotoTaskApp: App {
+    let persistenceController = PersistentController()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environment(\.managedObjectContext,persistenceController.container.viewContext)
         }
     }
 }
