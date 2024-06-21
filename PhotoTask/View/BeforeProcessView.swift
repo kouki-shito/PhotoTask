@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BeforeProcessView: View {
     @Environment(\.managedObjectContext) var viewContext
-    @Binding var navigationPath : [Navigation]
+    @Binding var navigationPath : [NaviTask]
 
     @FetchRequest(sortDescriptors: [])
     var tasks : FetchedResults<Tasks>
@@ -20,5 +20,5 @@ struct BeforeProcessView: View {
 }
 
 #Preview {
-    BeforeProcessView(navigationPath: .constant([.calendar,.before]))
+    BeforeProcessView(navigationPath: .constant([NaviTask(path: .calendar, nowTask: nil),NaviTask(path: .before, nowTask: nil)]))
 }

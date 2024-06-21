@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1E2888532C259131003ACB10 /* TodaysTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E28884F2C259131003ACB10 /* TodaysTask+CoreDataClass.swift */; };
+		1E2888542C259131003ACB10 /* TodaysTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888502C259131003ACB10 /* TodaysTask+CoreDataProperties.swift */; };
+		1E2888552C259131003ACB10 /* Tasks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888512C259131003ACB10 /* Tasks+CoreDataClass.swift */; };
+		1E2888562C259131003ACB10 /* Tasks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888522C259131003ACB10 /* Tasks+CoreDataProperties.swift */; };
+		1E2888582C25B9C1003ACB10 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888572C25B9C1003ACB10 /* CameraView.swift */; };
 		1E5A9E5D2C1EF9A9005FD884 /* PhotoTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9E5C2C1EF9A9005FD884 /* PhotoTaskApp.swift */; };
 		1E5A9E5F2C1EF9A9005FD884 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9E5E2C1EF9A9005FD884 /* ContentView.swift */; };
 		1E5A9E612C1EF9AB005FD884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E5A9E602C1EF9AB005FD884 /* Assets.xcassets */; };
@@ -22,11 +27,8 @@
 		1E5A9E9A2C1F03C1005FD884 /* BeforeProcessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9E992C1F03C1005FD884 /* BeforeProcessView.swift */; };
 		1E5A9E9C2C1F03DD005FD884 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9E9B2C1F03DD005FD884 /* SettingsView.swift */; };
 		1E5A9ED92C1F0A34005FD884 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9ED82C1F0A33005FD884 /* CalendarView.swift */; };
+		1EBD1FE42C24538000EB3B34 /* VersionExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EBD1FE32C24538000EB3B34 /* VersionExtention.swift */; };
 		1ECD78C02C215CA6000B65F6 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECD78BF2C215CA6000B65F6 /* DateExtension.swift */; };
-		1ECD78CD2C22C278000B65F6 /* TodaysTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECD78C92C22C278000B65F6 /* TodaysTask+CoreDataClass.swift */; };
-		1ECD78CE2C22C278000B65F6 /* TodaysTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECD78CA2C22C278000B65F6 /* TodaysTask+CoreDataProperties.swift */; };
-		1ECD78CF2C22C278000B65F6 /* Tasks+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECD78CB2C22C278000B65F6 /* Tasks+CoreDataClass.swift */; };
-		1ECD78D02C22C278000B65F6 /* Tasks+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECD78CC2C22C278000B65F6 /* Tasks+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1E28884F2C259131003ACB10 /* TodaysTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodaysTask+CoreDataClass.swift"; path = "../../TodaysTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1E2888502C259131003ACB10 /* TodaysTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodaysTask+CoreDataProperties.swift"; path = "../../TodaysTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1E2888512C259131003ACB10 /* Tasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Tasks+CoreDataClass.swift"; path = "../../Tasks+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1E2888522C259131003ACB10 /* Tasks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Tasks+CoreDataProperties.swift"; path = "../../Tasks+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1E2888572C25B9C1003ACB10 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		1E2888592C25BAD4003ACB10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E5A9E592C1EF9A9005FD884 /* PhotoTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5A9E5C2C1EF9A9005FD884 /* PhotoTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaskApp.swift; sourceTree = "<group>"; };
 		1E5A9E5E2C1EF9A9005FD884 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,11 +73,8 @@
 		1E5A9E992C1F03C1005FD884 /* BeforeProcessView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeforeProcessView.swift; sourceTree = "<group>"; };
 		1E5A9E9B2C1F03DD005FD884 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		1E5A9ED82C1F0A33005FD884 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		1EBD1FE32C24538000EB3B34 /* VersionExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionExtention.swift; sourceTree = "<group>"; };
 		1ECD78BF2C215CA6000B65F6 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
-		1ECD78C92C22C278000B65F6 /* TodaysTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodaysTask+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1ECD78CA2C22C278000B65F6 /* TodaysTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodaysTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		1ECD78CB2C22C278000B65F6 /* Tasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tasks+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1ECD78CC2C22C278000B65F6 /* Tasks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tasks+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +125,7 @@
 		1E5A9E5B2C1EF9A9005FD884 /* PhotoTask */ = {
 			isa = PBXGroup;
 			children = (
+				1E2888592C25BAD4003ACB10 /* Info.plist */,
 				1E5A9E8E2C1F0096005FD884 /* View */,
 				1E5A9E8D2C1F008C005FD884 /* Model */,
 				1E5A9E602C1EF9AB005FD884 /* Assets.xcassets */,
@@ -156,12 +162,13 @@
 		1E5A9E8D2C1F008C005FD884 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				1ECD78C92C22C278000B65F6 /* TodaysTask+CoreDataClass.swift */,
-				1ECD78CA2C22C278000B65F6 /* TodaysTask+CoreDataProperties.swift */,
-				1ECD78CB2C22C278000B65F6 /* Tasks+CoreDataClass.swift */,
-				1ECD78CC2C22C278000B65F6 /* Tasks+CoreDataProperties.swift */,
+				1E28884F2C259131003ACB10 /* TodaysTask+CoreDataClass.swift */,
+				1E2888502C259131003ACB10 /* TodaysTask+CoreDataProperties.swift */,
+				1E2888512C259131003ACB10 /* Tasks+CoreDataClass.swift */,
+				1E2888522C259131003ACB10 /* Tasks+CoreDataProperties.swift */,
 				1E5A9E8F2C1F0155005FD884 /* Persistent.swift */,
 				1ECD78BF2C215CA6000B65F6 /* DateExtension.swift */,
+				1EBD1FE32C24538000EB3B34 /* VersionExtention.swift */,
 				1E5A9E862C1EF9E5005FD884 /* TaskData.xcdatamodeld */,
 			);
 			path = Model;
@@ -178,6 +185,7 @@
 				1E5A9E992C1F03C1005FD884 /* BeforeProcessView.swift */,
 				1E5A9E9B2C1F03DD005FD884 /* SettingsView.swift */,
 				1E5A9ED82C1F0A33005FD884 /* CalendarView.swift */,
+				1E2888572C25B9C1003ACB10 /* CameraView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -312,17 +320,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ECD78CD2C22C278000B65F6 /* TodaysTask+CoreDataClass.swift in Sources */,
-				1ECD78CE2C22C278000B65F6 /* TodaysTask+CoreDataProperties.swift in Sources */,
-				1ECD78CF2C22C278000B65F6 /* Tasks+CoreDataClass.swift in Sources */,
-				1ECD78D02C22C278000B65F6 /* Tasks+CoreDataProperties.swift in Sources */,
 				1E5A9E902C1F0155005FD884 /* Persistent.swift in Sources */,
+				1EBD1FE42C24538000EB3B34 /* VersionExtention.swift in Sources */,
 				1ECD78C02C215CA6000B65F6 /* DateExtension.swift in Sources */,
 				1E5A9ED92C1F0A34005FD884 /* CalendarView.swift in Sources */,
 				1E5A9E982C1F0397005FD884 /* TodayProcessView.swift in Sources */,
+				1E2888532C259131003ACB10 /* TodaysTask+CoreDataClass.swift in Sources */,
+				1E2888542C259131003ACB10 /* TodaysTask+CoreDataProperties.swift in Sources */,
+				1E2888552C259131003ACB10 /* Tasks+CoreDataClass.swift in Sources */,
+				1E2888562C259131003ACB10 /* Tasks+CoreDataProperties.swift in Sources */,
 				1E5A9E9A2C1F03C1005FD884 /* BeforeProcessView.swift in Sources */,
 				1E5A9E962C1F0350005FD884 /* AddTaskView.swift in Sources */,
 				1E5A9E5F2C1EF9A9005FD884 /* ContentView.swift in Sources */,
+				1E2888582C25B9C1003ACB10 /* CameraView.swift in Sources */,
 				1E5A9E942C1F0322005FD884 /* HomeView.swift in Sources */,
 				1E5A9E9C2C1F03DD005FD884 /* SettingsView.swift in Sources */,
 				1E5A9E5D2C1EF9A9005FD884 /* PhotoTaskApp.swift in Sources */,
@@ -493,17 +503,19 @@
 				DEVELOPMENT_TEAM = QL9QJ536JT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhotoTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kouki.PhotoTask;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kouki.photoTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -522,17 +534,19 @@
 				DEVELOPMENT_TEAM = QL9QJ536JT;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PhotoTask/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kouki.PhotoTask;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kouki.photoTask;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

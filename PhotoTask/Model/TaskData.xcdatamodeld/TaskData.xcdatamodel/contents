@@ -8,11 +8,13 @@
         <attribute name="tasksID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="taskStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="taskState" optional="YES" attributeType="String"/>
+        <relationship name="todays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TodaysTask" inverseName="task" inverseEntity="TodaysTask"/>
     </entity>
     <entity name="TodaysTask" representedClassName="TodaysTask" syncable="YES">
-        <attribute name="dailyID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="dailyMemo" optional="YES" attributeType="String"/>
         <attribute name="dailyPhoto" optional="YES" attributeType="Binary"/>
+        <attribute name="todayProgress" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="updateDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="task" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Tasks" inverseName="todays" inverseEntity="Tasks"/>
     </entity>
 </model>
