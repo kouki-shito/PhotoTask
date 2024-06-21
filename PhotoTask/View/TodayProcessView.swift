@@ -18,6 +18,7 @@ struct TodayProcessView: View {
     @State private var didPages : Int = 0
     @State private var didPageText : String = "0"
     @State private var textMemo : String = ""
+    @State private var didFinishTask : Bool = false
 
     @FetchRequest(sortDescriptors: [])
     var tasks : FetchedResults<Tasks>
@@ -131,22 +132,28 @@ struct TodayProcessView: View {
             ToolbarItem(placement: .navigationBarTrailing){
 
                 Button(){
-                    isPresentedCameraView.toggle()
-
-
+                    if !didFinishTask{
+                        isPresentedCameraView.toggle()
+                    }else{
+                        Save()
+                    }
                 }label: {
                     Image(systemName: "checkmark")
                         .fontWeight(.medium)
                         .padding(.trailing,5)
-                }
 
+                }
+                .disabled(didPages > 0 ? false: true)
             }
+
         }
         .onAppear(){
+            didFinishTask = false
             for i in navigationPath.last?.nowTask?.todaysArray ?? [] {
 
                 if i.updateDate == navigationPath.last?.selectingDate{
                     didPages = Int(i.todayProgress)
+                    didFinishTask = true
                 }
 
             }
@@ -154,7 +161,7 @@ struct TodayProcessView: View {
         .onChange(of: image){ _ in
             if image != nil{
                 Save()
-                dismiss()
+
             }
         }
         .fullScreenCover(isPresented: $isPresentedCameraView){
@@ -185,6 +192,7 @@ extension TodayProcessView{
                 do{
                     try viewContext.save()
                     print("Update Success")
+                    dismiss()
                 }catch{
                     print("Update Error!")
                 }
@@ -196,13 +204,14 @@ extension TodayProcessView{
         let newToday = TodaysTask(context: viewContext)
         newToday.updateDate = navigationPath.last?.selectingDate
         newToday.todayProgress = Int64(didPages)
-        newToday.dailyPhoto = image?.pngData()
+        newToday.dailyPhoto = image!.pngData()
 
         navigationPath.last?.nowTask?.addToTodays(newToday)
 
         do{
             try viewContext.save()
             print("Save Success")
+            dismiss()
         }catch{
             print("Saving Error!")
         }

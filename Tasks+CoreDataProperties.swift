@@ -168,16 +168,15 @@ extension Tasks : Identifiable {
         }
     }
 
-    func backPhotoData(day : Date) -> Data?{
+    func backPhotoData(day : Date) -> UIImage?{
 
         for i in self.todaysArray{
 
             if i.updateDate == day.startOfDay && i.dailyPhoto != nil{
 
-                return i.dailyPhoto
+                return UIImage(data: i.dailyPhoto!)
 
             }
-
         }
         return nil
     }

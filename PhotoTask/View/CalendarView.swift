@@ -69,11 +69,19 @@ struct CalendarView: View {
                                     .monospaced()
                                     .padding(.leading,8)
                                     .border(backColor(day: day))
+
                                 Text(navtask?.everydayQuotaArray(day: day) ?? "")
 
-                                Image(uiImage:))
-                                    .resizable()
-                                    .frame(maxWidth: .infinity,maxHeight: .infinity)
+                                if getPhoto(day: day) != nil{
+                                    Image(uiImage: getPhoto(day: day)!)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(maxWidth: .infinity,minHeight: 80)
+                                        .contentShape(Rectangle())
+                                        .clipped()
+
+                                }
+
                             }
                             .contentShape(Rectangle())
                             .onTapGesture {
@@ -98,7 +106,6 @@ struct CalendarView: View {
             }
             .onChange(of: date) { _ in
                 days = date.calendarDisplayDays
-                
         }
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -178,7 +185,7 @@ struct CalendarView: View {
 
     func getPhoto(day : Date) -> UIImage?{
 
-        return UIImage(data: navigationPath.last?.nowTask?.backPhotoData(day: day) ?? )
+        return navigationPath.last?.nowTask?.backPhotoData(day: day)
     }
 
     func getNowYearMonth() -> String{
