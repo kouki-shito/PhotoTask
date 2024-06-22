@@ -12,7 +12,7 @@ struct CalendarView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) private var dismiss
 
-    @Binding var navigationPath : [NaviTask]
+    @Binding var naviPath : [NaviTask]
     @State private var days : [Date] = []
     @State private var date : Date = Date.now
     @State private var progressTemp : Int64 = 0
@@ -22,7 +22,7 @@ struct CalendarView: View {
 
 
     var body: some View {
-        let navtask = navigationPath.last?.nowTask
+        let navtask = naviPath.last?.nowTask
 
         ZStack {
 
@@ -59,47 +59,67 @@ struct CalendarView: View {
                                 .padding(.leading,8)
                                 .border(Color.gray.opacity(0.1))
                         }else{
-                            Rectangle()
-                                .overlay(alignment: .topLeading) {
-                                    Text(day.formatted(.dateTime.day()))
-                                        .font(.subheadline)
-                                        .fontWeight(.light)
-                                        .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .black)
-                                        .frame(maxWidth: .infinity,minHeight: 80,alignment: .topLeading)
-                                        .padding(.top,5)
-                                        .monospaced()
-                                        .padding(.leading,8)
-                                        .border(backColor(day: day))
-                                }
-                                .overlay(alignment: .center) {
-                                    Text(navtask?.everydayQuotaArray(day: day) ?? "")
-                                }
-                                .overlay(alignment: .center) {
-                                    if getPhoto(day: day) != nil{
-                                        Image(uiImage: getPhoto(day: day)!)
-                                            .resizable()
-                                            .scaledToFill()
+                            ZStack{
+                                Rectangle()
+                                    .overlay(alignment: .topLeading) {
+                                        Text(day.formatted(.dateTime.day()))
+                                            .font(.subheadline)
+                                            .fontWeight(.light)
+                                            .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .black)
+                                            .frame(maxWidth: .infinity,minHeight: 80,alignment: .topLeading)
+                                            .padding(.top,5)
+                                            .monospaced()
+                                            .padding(.leading,8)
+
                                     }
-                                }
-                                .foregroundStyle(.clear)
-                                .frame(maxWidth: .infinity, minHeight: 80)
-                                .clipped()
-                                .onTapGesture {
-                                    if Date.now.startOfDay == day.startOfDay{
-                                        navigationPath.append(NaviTask(path: .today,nowTask: navigationPath.last?.nowTask,selectingDate: day))
-                                    }else if day.startOfDay < Date.now.startOfDay {
-                                        navigationPath.append(NaviTask(path: .before,nowTask: navigationPath.last?.nowTask,selectingDate: day))
+                                    .overlay(alignment: .center) {
+                                        if getPhoto(day: day) != nil{
+                                            Image(uiImage: getPhoto(day: day)!)
+                                                .resizable()
+                                                .scaledToFill()
+                                        }
                                     }
+                                    .foregroundStyle(.clear)
+                                    .frame(maxWidth: .infinity, minHeight: 80)
+                                    .clipped()
+
+                                Text(navtask?.everydayQuotaArray(day: day) ?? "")
+
+                        }
+                            .contentShape(Rectangle())
+                            .border(backColor(day: day))
+                            .onTapGesture {
+                                if Date.now.startOfDay == day.startOfDay && naviPath.last?.nowTask?.taskState == "進行中" {
+
+                                    naviPath.append(NaviTask(
+                                        path: .today,
+                                        nowTask: naviPath.last?.nowTask,
+                                        selectingDate: day))
+
+                                }else if day.startOfDay < Date.now.startOfDay {
+
+                                    naviPath.append(NaviTask(
+                                        path: .before,
+                                        nowTask: naviPath.last?.nowTask,
+                                        selectingDate: day,todayTask: naviPath.last?.nowTask?.backTodays(day: day))
+                                    )
 
                                 }
+
+                            }
+
                         }
+                        
 
                     }
+
                 }
+
 
                 Spacer()
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .contentShape(Rectangle())
             .onAppear(){
                 days = date.calendarDisplayDays
                 navtask?.addProgressPages()
@@ -108,6 +128,15 @@ struct CalendarView: View {
                 days = date.calendarDisplayDays
         }
         }
+        .gesture(DragGesture().onEnded { gesture in
+            if gesture.translation.width > 0 {
+                // swipe to Right
+                date = Calendar.current.date(byAdding: .month, value: -1, to: date)!
+            } else {
+                // swipe to Left
+                date = Calendar.current.date(byAdding: .month, value: 1, to: date)!
+            }
+        })
         .navigationBarTitleDisplayMode(.inline)
         .toolbar(){
 
@@ -121,6 +150,7 @@ struct CalendarView: View {
                         .scaledToFit()
                         .fontWeight(.medium)
                         .padding(.leading,5)
+                        .contentShape(Rectangle())
                 }
             }
 
@@ -133,6 +163,7 @@ struct CalendarView: View {
                         Image(systemName: "lessthan")
                             .font(.headline)
                             .foregroundStyle(.black)
+                            .contentShape(Rectangle())
                     }
                     
                     Text(getNowYearMonth())
@@ -145,6 +176,7 @@ struct CalendarView: View {
                         Image(systemName: "greaterthan")
                             .font(.headline)
                             .foregroundStyle(.black)
+                            .contentShape(Rectangle())
 
                     }
                 }
@@ -161,6 +193,7 @@ struct CalendarView: View {
                         HStack{
                             Image(systemName: "arrowshape.turn.up.backward.badge.clock.fill")
                             Text("現在に戻る")
+                                .contentShape(Rectangle())
                         }
                     }
 
@@ -170,6 +203,7 @@ struct CalendarView: View {
                         HStack{
                             Image(systemName: "bookmark.fill")
                             Text("開始日に戻る")
+                                .contentShape(Rectangle())
                         }
 
                     }
@@ -185,7 +219,7 @@ struct CalendarView: View {
 
     func getPhoto(day : Date) -> UIImage?{
 
-        return navigationPath.last?.nowTask?.backPhotoData(day: day)
+        return naviPath.last?.nowTask?.backPhotoData(day: day)
     }
 
     func getNowYearMonth() -> String{
@@ -204,9 +238,9 @@ struct CalendarView: View {
         switch day.startOfDay{
         case Date.now.startOfDay:
             return Color.blue.opacity(0.8)
-        case navigationPath.last?.nowTask?.taskStartDate:
+        case naviPath.last?.nowTask?.taskStartDate:
             return Color.red.opacity(0.8)
-        case navigationPath.last?.nowTask?.taskEndDate:
+        case naviPath.last?.nowTask?.taskEndDate:
             return Color.green.opacity(0.8)
         default:
             return Color.gray.opacity(0.1)
@@ -219,5 +253,5 @@ struct CalendarView: View {
 
 
 #Preview {
-    CalendarView(navigationPath:.constant([NaviTask(path: .calendar, nowTask: nil)]))
+    CalendarView(naviPath:.constant([NaviTask(path: .calendar, nowTask: nil)]))
 }

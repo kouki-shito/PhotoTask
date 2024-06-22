@@ -34,7 +34,7 @@ struct AddTaskView: View {
     @Environment(\.managedObjectContext) var viewContext
     @FocusState var isFocused : Bool
 
-    @Binding var navigationPath : [NaviTask]
+    @Binding var naviPath : [NaviTask]
     @State var taskNameField : String = ""
     @State var selectStartDate : Date = Date().startOfDay
     @State var selectEndDate : Date = Date().startOfDay.nextDay
@@ -52,6 +52,8 @@ struct AddTaskView: View {
         sunday: true
 
     )
+    @State private var image: UIImage?
+    @State private var isPresentedCameraView = false
 
     let UIIFGeneratorLight = UIImpactFeedbackGenerator(style: .light)
     let UISFGenerator = UISelectionFeedbackGenerator()
@@ -79,6 +81,7 @@ struct AddTaskView: View {
                                         Image(systemName: "checkmark")
                                             .foregroundStyle(.green)
                                             .bold()
+                                            .contentShape(Rectangle())
                                     }
                                 }
                                 .frame(maxWidth: .infinity,alignment: .trailing)
@@ -181,102 +184,102 @@ struct AddTaskView: View {
 
                     Divider()
 
-                    VStack {
-                        Text("学習できる曜日の設定")
-                            .font(.title3)
-                            .frame(maxWidth: .infinity,alignment: .leading)
-                            .bold()
-                            .padding(.top,10)
-
-
-
-
-                        Toggle(isOn: $isdayPageSetting.monday) {
-                            Text("月曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.monday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-
-                        Toggle(isOn: $isdayPageSetting.tuesday) {
-                            Text("火曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.tuesday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-
-                        Toggle(isOn: $isdayPageSetting.wednesday) {
-                            Text("水曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.wednesday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-
-                        Toggle(isOn: $isdayPageSetting.thursday) {
-                            Text("木曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.thursday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-
-                        Toggle(isOn: $isdayPageSetting.friday) {
-                            Text("金曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.friday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-
-                        Toggle(isOn: $isdayPageSetting.saturday) {
-                            Text("土曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.saturday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-
-                        Toggle(isOn: $isdayPageSetting.sunday) {
-                            Text("日曜日")
-                                .font(.system(.title2, design: .rounded))
-                                .fontWeight(.heavy)
-                                .foregroundColor(isdayPageSetting.sunday ? .blue : .black.opacity(0.3))
-                                .frame(maxWidth: .infinity,alignment: .leading)
-
-                        }
-                        .padding(.leading,10)
-                        .padding(.top,10)
-                        .toggleStyle(.switch)
-                    }
-                    .padding(.leading,5)
-                    .frame(maxWidth: .infinity,alignment: .leading)
+//                    VStack {
+//                        Text("学習できる曜日の設定")
+//                            .font(.title3)
+//                            .frame(maxWidth: .infinity,alignment: .leading)
+//                            .bold()
+//                            .padding(.top,10)
+//
+//
+//
+//
+//                        Toggle(isOn: $isdayPageSetting.monday) {
+//                            Text("月曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.monday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//
+//                        Toggle(isOn: $isdayPageSetting.tuesday) {
+//                            Text("火曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.tuesday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//
+//                        Toggle(isOn: $isdayPageSetting.wednesday) {
+//                            Text("水曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.wednesday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//
+//                        Toggle(isOn: $isdayPageSetting.thursday) {
+//                            Text("木曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.thursday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//
+//                        Toggle(isOn: $isdayPageSetting.friday) {
+//                            Text("金曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.friday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//
+//                        Toggle(isOn: $isdayPageSetting.saturday) {
+//                            Text("土曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.saturday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//
+//                        Toggle(isOn: $isdayPageSetting.sunday) {
+//                            Text("日曜日")
+//                                .font(.system(.title2, design: .rounded))
+//                                .fontWeight(.heavy)
+//                                .foregroundColor(isdayPageSetting.sunday ? .blue : .black.opacity(0.3))
+//                                .frame(maxWidth: .infinity,alignment: .leading)
+//
+//                        }
+//                        .padding(.leading,10)
+//                        .padding(.top,10)
+//                        .toggleStyle(.switch)
+//                    }
+//                    .padding(.leading,5)
+//                    .frame(maxWidth: .infinity,alignment: .leading)
 
                     Spacer()
                 }
@@ -299,21 +302,32 @@ struct AddTaskView: View {
                         .scaledToFit()
                         .fontWeight(.medium)
                         .padding(.leading,5)
+                        .contentShape(Rectangle())
                 }
             }
 
             ToolbarItem(placement: .navigationBarTrailing){
 
                 Button(){
-                    taskSave()
+                    
+                    isPresentedCameraView.toggle()
 
                 }label: {
                     Text("保存")
                         .font(.title2)
                         .fontWeight(.heavy)
                         .padding(.trailing,5)
+                        .contentShape(Rectangle())
                 }
                 .disabled(checkInvaild())
+            }
+        }
+        .fullScreenCover(isPresented: $isPresentedCameraView){
+            CameraView(image: $image).ignoresSafeArea()
+        }
+        .onChange(of: image){ _ in
+            if image != nil{
+                taskSave()
             }
         }
     }
@@ -330,8 +344,9 @@ extension AddTaskView{
         newTask.taskStartDate = selectStartDate
         newTask.taskEndDate = selectEndDate
         newTask.goalPages = Int64(pageField)!
-        newTask.taskState = "progress"
+        newTask.taskState = "進行中"
         newTask.progressPages = 0
+        newTask.thumbnailPhoto = image!.pngData()
 
         do{
             try viewContext.save()
@@ -356,5 +371,5 @@ extension AddTaskView{
 
 
 #Preview {
-    AddTaskView(navigationPath: .constant([NaviTask(path: .addTask, nowTask: nil)]))
+    AddTaskView(naviPath: .constant([NaviTask(path: .addTask, nowTask: nil)]))
 }

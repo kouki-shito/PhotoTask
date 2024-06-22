@@ -8,6 +8,7 @@
         <attribute name="tasksID" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="taskStartDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="taskState" optional="YES" attributeType="String"/>
+        <attribute name="thumbnailPhoto" optional="YES" attributeType="Binary"/>
         <relationship name="todays" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TodaysTask" inverseName="task" inverseEntity="TodaysTask"/>
     </entity>
     <entity name="TodaysTask" representedClassName="TodaysTask" syncable="YES">

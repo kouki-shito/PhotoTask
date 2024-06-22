@@ -11,7 +11,7 @@ import Combine
 struct TodayProcessView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) private var dismiss
-    @Binding var navigationPath : [NaviTask]
+    @Binding var naviPath : [NaviTask]
     
     @State private var isPresentedCameraView = false
     @State private var image: UIImage?
@@ -49,11 +49,14 @@ struct TodayProcessView: View {
                         .onReceive(Just(didPageText), perform: { _ in
                             if didPageText.count > 4{
                                 didPageText = String(didPageText.prefix(4))
+                            }else if Int64(didPageText) ?? 0 > Int64((naviPath.last?.nowTask!.leftPages)!) {
+                                didPageText = String((naviPath.last?.nowTask!.leftPages) ?? 0)
+                                didPages = Int(didPageText) ?? 0
                             }else{
                                 didPages = Int(didPageText) ?? 0
                             }
                         })
-                    Text("/\(navigationPath.last?.nowTask?.todayQuota ?? 0) ページ")
+                    Text("/\(naviPath.last?.nowTask?.todayQuota ?? 0) ページ")
                         .fontWeight(.bold)
                         .font(.title2)
                         .monospaced()
@@ -79,7 +82,7 @@ struct TodayProcessView: View {
                     }
                     .padding(.trailing,50)
                     Button(){
-                        if didPages < 9999 {
+                        if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) {
                             didPages += 1
                         }
                     }label: {
@@ -95,8 +98,10 @@ struct TodayProcessView: View {
 
                 Form{
                     ZStack(alignment:.topLeading) {
-                        TextEditor(text: $textMemo)
-
+                        TextEditor(text: Binding<String>(
+                            get: { textMemo },
+                            set: { textMemo = String($0.prefix(221)) }
+                        ))
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(.gray).opacity(0.2))
                             .frame(maxWidth: .infinity,minHeight: 200)
@@ -126,6 +131,7 @@ struct TodayProcessView: View {
                         .scaledToFit()
                         .fontWeight(.medium)
                         .padding(.leading,5)
+                        .contentShape(Rectangle())
                 }
             }
 
@@ -141,6 +147,7 @@ struct TodayProcessView: View {
                     Image(systemName: "checkmark")
                         .fontWeight(.medium)
                         .padding(.trailing,5)
+                        .contentShape(Rectangle())
 
                 }
                 .disabled(didPages > 0 ? false: true)
@@ -148,25 +155,30 @@ struct TodayProcessView: View {
 
         }
         .onAppear(){
-            didFinishTask = false
-            for i in navigationPath.last?.nowTask?.todaysArray ?? [] {
 
-                if i.updateDate == navigationPath.last?.selectingDate{
+            didFinishTask = false
+
+            for i in naviPath.last?.nowTask?.todaysArray ?? [] {
+
+                if i.updateDate == naviPath.last?.selectingDate{
                     didPages = Int(i.todayProgress)
+                    textMemo = i.dailyMemo ?? ""
                     didFinishTask = true
                 }
-
             }
         }
         .onChange(of: image){ _ in
             if image != nil{
                 Save()
-
             }
+        }
+        .onChange(of: textMemo){ _ in
+            print(textMemo)
         }
         .fullScreenCover(isPresented: $isPresentedCameraView){
             CameraView(image: $image).ignoresSafeArea()
         }
+        .edgeSwipe()
     }
     
 }
@@ -174,18 +186,19 @@ struct TodayProcessView: View {
 extension TodayProcessView{
 
     func getPercentage() -> Double{
-        if didPages <= navigationPath.last?.nowTask?.todayQuota ?? 0{
-            return Double(didPages) / Double(navigationPath.last?.nowTask?.todayQuota ?? 0)
+        if didPages <= naviPath.last?.nowTask?.todayQuota ?? 0{
+            return Double(didPages) / Double(naviPath.last?.nowTask?.todayQuota ?? 0)
         }else{
             return 1.0
         }
     }
 
     func Save(){
-        
-        for i in navigationPath.last?.nowTask?.todaysArray ?? [] {
+        if naviPath.last?.nowTask?.taskState == "進行中"{
+            
+            for i in naviPath.last?.nowTask?.todaysArray ?? [] {
 
-            if i.updateDate == navigationPath.last?.selectingDate{
+            if i.updateDate == naviPath.last?.selectingDate{
 
                 i.todayProgress = Int64(didPages)
 
@@ -202,11 +215,16 @@ extension TodayProcessView{
         }
 
         let newToday = TodaysTask(context: viewContext)
-        newToday.updateDate = navigationPath.last?.selectingDate
+        newToday.updateDate = naviPath.last?.selectingDate
         newToday.todayProgress = Int64(didPages)
         newToday.dailyPhoto = image!.pngData()
+        newToday.dailyMemo = textMemo
 
-        navigationPath.last?.nowTask?.addToTodays(newToday)
+        naviPath.last?.nowTask?.addToTodays(newToday)
+
+        if (naviPath.last?.nowTask!.leftPages)! <= Int64(didPages){
+            naviPath.last?.nowTask?.taskState = "終了"
+        }
 
         do{
             try viewContext.save()
@@ -215,12 +233,12 @@ extension TodayProcessView{
         }catch{
             print("Saving Error!")
         }
-
+    }
     }
 
 
 }
 
 #Preview {
-    TodayProcessView(navigationPath: .constant([NaviTask(path: .calendar, nowTask: nil),NaviTask(path: .today, nowTask: nil)]))
+    TodayProcessView(naviPath: .constant([NaviTask(path: .calendar, nowTask: nil),NaviTask(path: .today, nowTask: nil)]))
 }

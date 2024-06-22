@@ -21,4 +21,27 @@ extension View {
             onChange(of: value, perform: action)
         }
     }
+
+    func edgeSwipe() -> some View {
+        self.modifier(EdgeSwipe())
+    }
+
+}
+
+struct EdgeSwipe: ViewModifier {
+    @Environment(\.dismiss) var dismiss
+
+    private let edgeWidth: Double = 30
+    private let baseDragWidth: Double = 30
+
+    func body(content: Content) -> some View {
+        content
+            .gesture (
+                DragGesture().onChanged { value in
+                    if value.startLocation.x < edgeWidth && value.translation.width > baseDragWidth {
+                        dismiss()
+                    }
+                }
+            )
+    }
 }

@@ -2,7 +2,7 @@
 //  Tasks+CoreDataProperties.swift
 //  PhotoTask
 //
-//  Created by 市東 on 2024/06/21.
+//  Created by 市東 on 2024/06/23.
 //
 //
 
@@ -24,6 +24,7 @@ extension Tasks {
     @NSManaged public var tasksID: UUID?
     @NSManaged public var taskStartDate: Date?
     @NSManaged public var taskState: String?
+    @NSManaged public var thumbnailPhoto: Data?
     @NSManaged public var todays: NSSet?
 
 }
@@ -47,7 +48,6 @@ extension Tasks {
 
 extension Tasks : Identifiable {
 
-    
     public var todaysArray: [TodaysTask] {
         let set = todays as? Set<TodaysTask> ?? []
         return set.sorted {
@@ -178,6 +178,19 @@ extension Tasks : Identifiable {
 
             }
         }
+        return nil
+    }
+
+    func backTodays(day : Date) -> TodaysTask?{
+
+        for i in self.todaysArray{
+
+            if i.updateDate == day.startOfDay{
+
+                return i
+            }
+        }
+
         return nil
     }
 

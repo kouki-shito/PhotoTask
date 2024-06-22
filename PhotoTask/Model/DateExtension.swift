@@ -61,6 +61,10 @@ extension Date{
         Calendar.current.date(byAdding: .day, value: 1, to: self)!
     }
 
+    var yesterday : Date {
+        Calendar.current.date(byAdding: .day, value: -1, to: self)!
+    }
+
     func toStringWithCurrentLocale() -> String {
 
         let formatter = DateFormatter()

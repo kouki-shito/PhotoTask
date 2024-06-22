@@ -16,26 +16,28 @@ struct NaviTask : Hashable {
     var path : Navigation
     var nowTask : Tasks?
     var selectingDate : Date?
+    var todayTask : TodaysTask?
 }
 
 struct ContentView: View {
-    @State private var navigationPath : [NaviTask] = []
+    @State private var naviPath : [NaviTask] = []
     @Environment(\.managedObjectContext) var viewContext
 
     @FetchRequest(sortDescriptors: [])
     var tasks : FetchedResults<Tasks>
 
     var body: some View {
-        NavigationStack(path: $navigationPath){
+        NavigationStack(path: $naviPath){
 
-            HomeView(navigationPath: $navigationPath)
+            HomeView(naviPath: $naviPath)
                 .toolbar(){
                     ToolbarItem(placement: .topBarTrailing){
                         Button(){
-                            navigationPath.append(NaviTask(path: .addTask, nowTask: nil))
+                            naviPath.append(NaviTask(path: .addTask, nowTask: nil))
                         }label: {
                             Image(systemName: "plus")
-
+                                .contentShape(Rectangle())
+                            
                         }
                     }
                     ToolbarItem(placement: .topBarLeading){
@@ -43,28 +45,30 @@ struct ContentView: View {
                             debugSave()
                         }label: {
                             Image(systemName: "gearshape")
-                                
+                                .contentShape(Rectangle())
 
                         }
                     }
                 }
+            
                 .navigationTitle("現在のタスク")
                 .navigationDestination(for: NaviTask.self){ value in
 
                     switch value.path {
                     case .calendar:
-                        CalendarView(navigationPath: $navigationPath)
+                        CalendarView(naviPath: $naviPath)
                             .navigationBarBackButtonHidden()
                     case .addTask:
-                        AddTaskView(navigationPath: $navigationPath)
+                        AddTaskView(naviPath: $naviPath)
                             .navigationBarBackButtonHidden()
                             .navigationTitle("新規タスク作成")
                             .navigationBarTitleDisplayMode(.inline)
                     case .today:
-                        TodayProcessView(navigationPath: $navigationPath)
+                        TodayProcessView(naviPath: $naviPath)
                             .navigationBarBackButtonHidden()
                     case .before:
-                        BeforeProcessView(navigationPath: $navigationPath)
+                        BeforeProcessView(naviPath: $naviPath)
+                            .navigationBarBackButtonHidden()
                     }
                 }
         }
@@ -99,9 +103,9 @@ extension ContentView{
         newTask.tasksID = UUID()
         newTask.taskName = "DEBUG!!"
         newTask.taskStartDate = makeDate(y: 2023, m: 6, d: 2)
-        newTask.taskEndDate = makeDate(y: 2024, m: 10, d: 10)
+        newTask.taskEndDate = makeDate(y: 2024, m: 6, d: 2)
         newTask.goalPages = 100
-        newTask.taskState = "progress"
+        newTask.taskState = "進行中"
         newTask.progressPages = 0
 
         do{
