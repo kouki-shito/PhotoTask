@@ -59,39 +59,39 @@ struct CalendarView: View {
                                 .padding(.leading,8)
                                 .border(Color.gray.opacity(0.1))
                         }else{
-                            ZStack{
-                                Text(day.formatted(.dateTime.day()))
-                                    .font(.subheadline)
-                                    .fontWeight(.light)
-                                    .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .black)
-                                    .frame(maxWidth: .infinity,minHeight: 80,alignment: .topLeading)
-                                    .padding(.top,5)
-                                    .monospaced()
-                                    .padding(.leading,8)
-                                    .border(backColor(day: day))
-
-                                Text(navtask?.everydayQuotaArray(day: day) ?? "")
-
-                                if getPhoto(day: day) != nil{
-                                    Image(uiImage: getPhoto(day: day)!)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(maxWidth: .infinity,minHeight: 80)
-                                        .contentShape(Rectangle())
-                                        .clipped()
+                            Rectangle()
+                                .overlay(alignment: .topLeading) {
+                                    Text(day.formatted(.dateTime.day()))
+                                        .font(.subheadline)
+                                        .fontWeight(.light)
+                                        .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .black)
+                                        .frame(maxWidth: .infinity,minHeight: 80,alignment: .topLeading)
+                                        .padding(.top,5)
+                                        .monospaced()
+                                        .padding(.leading,8)
+                                        .border(backColor(day: day))
+                                }
+                                .overlay(alignment: .center) {
+                                    Text(navtask?.everydayQuotaArray(day: day) ?? "")
+                                }
+                                .overlay(alignment: .center) {
+                                    if getPhoto(day: day) != nil{
+                                        Image(uiImage: getPhoto(day: day)!)
+                                            .resizable()
+                                            .scaledToFill()
+                                    }
+                                }
+                                .foregroundStyle(.clear)
+                                .frame(maxWidth: .infinity, minHeight: 80)
+                                .clipped()
+                                .onTapGesture {
+                                    if Date.now.startOfDay == day.startOfDay{
+                                        navigationPath.append(NaviTask(path: .today,nowTask: navigationPath.last?.nowTask,selectingDate: day))
+                                    }else if day.startOfDay < Date.now.startOfDay {
+                                        navigationPath.append(NaviTask(path: .before,nowTask: navigationPath.last?.nowTask,selectingDate: day))
+                                    }
 
                                 }
-
-                            }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                if Date.now.startOfDay == day.startOfDay{
-                                    navigationPath.append(NaviTask(path: .today,nowTask: navigationPath.last?.nowTask,selectingDate: day))
-                                }else if day.startOfDay < Date.now.startOfDay {
-                                    navigationPath.append(NaviTask(path: .before,nowTask: navigationPath.last?.nowTask,selectingDate: day))
-                                }
-
-                            }
                         }
 
                     }
