@@ -14,8 +14,7 @@ struct HomeView: View {
     @FetchRequest(sortDescriptors: [
         NSSortDescriptor(keyPath: \Tasks.taskState, ascending: false),
         NSSortDescriptor(keyPath: \Tasks.taskEndDate, ascending: true)
-    ]
-    )
+    ])
     private var tasks : FetchedResults<Tasks>
 
     var body: some View {
@@ -83,12 +82,26 @@ struct HomeView: View {
                                 Divider()
 
                                 HStack(spacing:0) {
-                                    Text("あと\(i.leftPages)ページ")
-                                        .fixedSize(horizontal: true, vertical: true)
-                                        .font(.caption2)
-                                        .padding(.top)
-                                        .padding(.bottom,5)
-                                        .lineLimit(1)
+
+                                    if i.leftPages > 0{
+                                        
+                                        Text("あと\(i.leftPages)ページ")
+                                            .fixedSize(horizontal: true, vertical: true)
+                                            .font(.caption2)
+                                            .padding(.top)
+                                            .padding(.bottom,5)
+                                            .lineLimit(1)
+
+                                    }else{
+                                        Text("完了")
+                                            .fixedSize(horizontal: true, vertical: true)
+                                            .font(.caption2)
+                                            .padding(.top)
+                                            .padding(.bottom,5)
+                                            .bold()
+                                            .padding(.leading,2)
+                                            .lineLimit(1)
+                                    }
 
                                     Spacer()
 
@@ -153,7 +166,9 @@ struct HomeView: View {
                         }
                     }
 
+
                 }
+
                 .onDelete(perform: deleteTask)
             }
             .frame(maxWidth: .infinity)
