@@ -9,6 +9,7 @@ import SwiftUI
 import AudioToolbox
 import Combine
 import CoreData
+import PhotosUI
 
 struct DayBool{
 
@@ -53,6 +54,8 @@ struct AddTaskView: View {
 
     )
     @State private var image: UIImage?
+    @State private var selectedImage : PhotosPickerItem?
+    @State private var isPresentedPhotoPicker = false
     @State private var isPresentedCameraView = false
 
     let UIIFGeneratorLight = UIImpactFeedbackGenerator(style: .light)
@@ -308,10 +311,29 @@ struct AddTaskView: View {
 
             ToolbarItem(placement: .navigationBarTrailing){
 
-                Button(){
-                    
-                    isPresentedCameraView.toggle()
+                Menu{
 
+                    Button(){
+                        isPresentedCameraView.toggle()
+                    }label: {
+
+                        HStack{
+                            Image(systemName: "camera")
+                            Text("写真を撮る")
+                                .contentShape(Rectangle())
+                        }
+                    }
+
+                    Button{
+                        isPresentedPhotoPicker.toggle()
+                    }label: {
+
+                        HStack{
+                            Image(systemName: "photo.on.rectangle")
+                            Text("ギャラリーから選ぶ")
+                                .contentShape(Rectangle())
+                        }
+                    }
                 }label: {
                     Text("保存")
                         .font(.title2)
@@ -325,9 +347,18 @@ struct AddTaskView: View {
         .fullScreenCover(isPresented: $isPresentedCameraView){
             CameraView(image: $image).ignoresSafeArea()
         }
+        .photosPicker(isPresented: $isPresentedPhotoPicker, selection: $selectedImage )
         .onChange(of: image){ _ in
             if image != nil{
                 taskSave()
+            }
+        }
+        .onChange(of: selectedImage) { img in
+
+            Task {
+                guard let data = try? await img?.loadTransferable(type: Data.self) else { return }
+                guard let uiImage = UIImage(data: data) else { return }
+                image = uiImage
             }
         }
     }

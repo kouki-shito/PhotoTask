@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import PhotosUI
 
 struct TodayProcessView: View {
     @Environment(\.managedObjectContext) var viewContext
@@ -19,6 +20,8 @@ struct TodayProcessView: View {
     @State private var didPageText : String = "0"
     @State private var textMemo : String = ""
     @State private var didFinishTask : Bool = false
+    @State private var selectedImage : PhotosPickerItem?
+    @State private var isPresentedPhotoPicker = false
 
     @FetchRequest(sortDescriptors: [])
     var tasks : FetchedResults<Tasks>
@@ -169,18 +172,38 @@ struct TodayProcessView: View {
 
             ToolbarItem(placement: .navigationBarTrailing){
 
-                Button(){
-                    if !didFinishTask{
-                        isPresentedCameraView.toggle()
-                    }else{
-                        Save()
+                Menu{
+
+                    Button(){
+                        if !didFinishTask{
+                            isPresentedCameraView.toggle()
+                        }else{
+                            Save()
+                        }
+                    }label: {
+
+                        HStack{
+                            Image(systemName: "camera")
+                            Text("写真を撮る")
+                                .contentShape(Rectangle())
+                        }
+                    }
+
+                    Button{
+                        isPresentedPhotoPicker.toggle()
+                    }label: {
+
+                        HStack{
+                            Image(systemName: "photo.on.rectangle")
+                            Text("ギャラリーから選ぶ")
+                                .contentShape(Rectangle())
+                        }
                     }
                 }label: {
                     Image(systemName: "checkmark")
                         .fontWeight(.medium)
                         .padding(.trailing,5)
                         .contentShape(Rectangle())
-
                 }
                 .disabled(didPages > 0 ? false: true)
             }
@@ -204,12 +227,21 @@ struct TodayProcessView: View {
                 Save()
             }
         }
+        .onChange(of: selectedImage) { img in
+
+            Task {
+                guard let data = try? await img?.loadTransferable(type: Data.self) else { return }
+                guard let uiImage = UIImage(data: data) else { return }
+                image = uiImage
+            }
+        }
         .onChange(of: textMemo){ _ in
             print(textMemo)
         }
         .fullScreenCover(isPresented: $isPresentedCameraView){
             CameraView(image: $image).ignoresSafeArea()
         }
+        .photosPicker(isPresented: $isPresentedPhotoPicker, selection: $selectedImage )
         .edgeSwipe()
     }
     
