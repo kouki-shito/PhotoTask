@@ -36,19 +36,21 @@ struct ContentView: View {
                             naviPath.append(NaviTask(path: .addTask, nowTask: nil))
                         }label: {
                             Image(systemName: "plus")
-                                .contentShape(Rectangle())
+                                .bold()
+                                .contentShape(Circle())
                             
                         }
                     }
-                    ToolbarItem(placement: .topBarLeading){
-                        Button(){
-                            debugSave()
-                        }label: {
-                            Image(systemName: "gearshape")
-                                .contentShape(Rectangle())
-
-                        }
-                    }
+//                    ToolbarItem(placement: .topBarLeading){
+//                        Button(){
+//
+//                        }label: {
+//                            Image(systemName: "questionmark")
+//                                .bold()
+//                                .contentShape(Circle())
+//
+//                        }
+//                    }
                 }
             
                 .navigationTitle("現在のタスク")
@@ -96,35 +98,35 @@ extension ContentView{
         }
     }
 
-    func debugSave(){
-
-        let newTask = Tasks(context: viewContext)
-
-        newTask.tasksID = UUID()
-        newTask.taskName = "DEBUG!!"
-        newTask.taskStartDate = makeDate(y: 2023, m: 6, d: 2)
-        newTask.taskEndDate = makeDate(y: 2024, m: 6, d: 2)
-        newTask.goalPages = 100
-        newTask.taskState = "進行中"
-        newTask.progressPages = 0
-
-        do{
-            try viewContext.save()
-            print("Save Success")
-        }catch{
-            print("Saving Error!")
-        }
-
-    }
-
-    func makeDate(y:Int,m:Int,d:Int) -> Date{
-
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? TimeZone.gmt
-
-        let date = calendar.date(from: DateComponents(year: y,month: m,day: d))!.startOfDay
-        return date
-    }
+//    func debugSave(){
+//
+//        let newTask = Tasks(context: viewContext)
+//
+//        newTask.tasksID = UUID()
+//        newTask.taskName = "DEBUG!!"
+//        newTask.taskStartDate = makeDate(y: 2023, m: 6, d: 2)
+//        newTask.taskEndDate = makeDate(y: 2024, m: 6, d: 2)
+//        newTask.goalPages = 100
+//        newTask.taskState = "進行中"
+//        newTask.progressPages = 0
+//
+//        do{
+//            try viewContext.save()
+//            print("Save Success")
+//        }catch{
+//            print("Saving Error!")
+//        }
+//
+//    }
+//
+//    func makeDate(y:Int,m:Int,d:Int) -> Date{
+//
+//        var calendar = Calendar(identifier: .gregorian)
+//        calendar.timeZone = TimeZone(identifier: "Asia/Tokyo") ?? TimeZone.gmt
+//
+//        let date = calendar.date(from: DateComponents(year: y,month: m,day: d))!.startOfDay
+//        return date
+//    }
 
 
     }
