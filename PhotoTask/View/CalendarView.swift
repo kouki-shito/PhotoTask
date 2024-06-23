@@ -16,12 +16,15 @@ struct CalendarView: View {
     @State private var days : [Date] = []
     @State private var date : Date = Date.now
     @State private var progressTemp : Int64 = 0
+    @State var customAlert = false
+
     let formatter = DateFormatter()
     let daysOfWeek = ["日","月","火","水","木","金","土"]
     let columns = Array(repeating: GridItem(.flexible(),spacing: 0), count: 7)
 
 
     var body: some View {
+
         let navtask = naviPath.last?.nowTask
 
         ZStack {
@@ -121,12 +124,38 @@ struct CalendarView: View {
             .frame(maxWidth: .infinity,maxHeight: .infinity)
             .contentShape(Rectangle())
             .onAppear(){
+
                 days = date.calendarDisplayDays
                 navtask?.addProgressPages()
+
+                if navtask?.taskState == "終了" && navtask?.leftPages == 0 && navtask?.isCongrated == false{
+                    navtask?.isCongrated = true
+
+                    do{
+                        try viewContext.save()
+                        print("Congrat Success")
+                        
+                        withAnimation{
+                            customAlert.toggle()
+                        }
+                    }catch{
+                        print("Congrat Error!")
+                    }
+
+
+                }
+
             }
             .onChange(of: date) { _ in
                 days = date.calendarDisplayDays
         }
+
+            if customAlert {
+
+                CustomAlertView(showAlert: $customAlert)
+
+            }
+
         }
         .gesture(DragGesture().onEnded { gesture in
             if gesture.translation.width > 0 {

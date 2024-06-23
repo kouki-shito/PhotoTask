@@ -347,6 +347,7 @@ extension AddTaskView{
         newTask.taskState = "進行中"
         newTask.progressPages = 0
         newTask.thumbnailPhoto = image!.pngData()
+        newTask.isCongrated = false
 
         do{
             try viewContext.save()

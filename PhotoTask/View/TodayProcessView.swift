@@ -70,28 +70,60 @@ struct TodayProcessView: View {
                     .scaleEffect(x: 1, y: 2)
                     .padding(.horizontal)
                 HStack{
-                    Button(){
-                        if didPages != 0 {
-                            didPages -= 1
+                    if #available(iOS 17.0, *) {
+                        Button(){
+                            if didPages != 0 {
+                                didPages -= 1
+                            }
+                        }label: {
+                            Image(systemName: "minus.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40)
                         }
-                    }label: {
-                        Image(systemName: "minus.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
-                    }
-                    .padding(.trailing,50)
-                    Button(){
-                        if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) {
-                            didPages += 1
+                        .buttonRepeatBehavior(.enabled)
+                        .padding(.trailing,50)
+                    } else {
+                        // Fallback on earlier versions
+                        Button(){
+                            if didPages != 0 {
+                                didPages -= 1
+                            }
+                        }label: {
+                            Image(systemName: "minus.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40)
                         }
-                    }label: {
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 40)
+                        .padding(.trailing,50)
                     }
-                    .padding(.leading,50)
+
+                    if #available(iOS 17.0, *) {
+                        Button(){
+                            if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) {
+                                didPages += 1
+                            }
+                        }label: {
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40)
+                        }
+                        .buttonRepeatBehavior(.enabled)
+                        .padding(.leading,50)
+                    } else {
+                        Button(){
+                            if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) {
+                                didPages += 1
+                            }
+                        }label: {
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 40)
+                        }
+                        .padding(.leading,50)
+                    }
                 }
                 .padding(.top,15)
                 .frame(maxWidth: .infinity,alignment: .center)

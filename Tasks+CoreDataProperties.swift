@@ -25,6 +25,7 @@ extension Tasks {
     @NSManaged public var taskStartDate: Date?
     @NSManaged public var taskState: String?
     @NSManaged public var thumbnailPhoto: Data?
+    @NSManaged public var isCongrated: Bool
     @NSManaged public var todays: NSSet?
 
 }
@@ -193,5 +194,6 @@ extension Tasks : Identifiable {
 
         return nil
     }
+
 
 }

@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22757" systemVersion="23E224" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
     <entity name="Tasks" representedClassName="Tasks" syncable="YES">
         <attribute name="goalPages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isCongrated" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="progressPages" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="taskEndDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="taskName" optional="YES" attributeType="String"/>

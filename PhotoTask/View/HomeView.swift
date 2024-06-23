@@ -180,6 +180,7 @@ struct HomeView: View {
         .onAppear(){
 
             for i in tasks{
+                if i.taskState == "進行中"{
                 if i.taskEndDate ?? Date.now.startOfDay < Date.now.startOfDay || i.leftPages <= 0{
                     i.taskState = "終了"
 
@@ -193,6 +194,7 @@ struct HomeView: View {
 
                 }
                 i.addProgressPages()
+            }
             }
 
         }
