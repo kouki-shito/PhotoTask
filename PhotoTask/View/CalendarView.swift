@@ -18,10 +18,9 @@ struct CalendarView: View {
     @State private var progressTemp : Int64 = 0
     @State var customAlert = false
 
-    let formatter = DateFormatter()
-    let daysOfWeek = ["日","月","火","水","木","金","土"]
-    let columns = Array(repeating: GridItem(.flexible(),spacing: 0), count: 7)
-
+    private let formatter = DateFormatter()
+    private let daysOfWeek = ["日","月","火","水","木","金","土"]
+    private let columns = Array(repeating: GridItem(.flexible(),spacing: 0), count: 7)
 
     var body: some View {
 
@@ -35,6 +34,8 @@ struct CalendarView: View {
 
             VStack {
 
+                //MARK: - Day Of Week Section
+
                 Divider()
                     .frame(maxWidth: .infinity)
 
@@ -47,6 +48,8 @@ struct CalendarView: View {
                     }
                 }
                 .padding(.top,5)
+
+                //MARK: - Calendar Grid Section
 
                 LazyVGrid(columns:columns,spacing: 0){
 
@@ -245,6 +248,14 @@ struct CalendarView: View {
             }
         }
     }
+
+
+
+}
+
+//MARK: -Extent Func Section
+
+extension CalendarView {
 
     func getPhoto(day : Date) -> UIImage?{
 

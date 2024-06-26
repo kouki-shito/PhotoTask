@@ -47,6 +47,8 @@ extension Tasks {
 
 }
 
+// TODO: Need Refactaling Future
+
 extension Tasks : Identifiable {
 
     public var todaysArray: [TodaysTask] {
@@ -55,7 +57,6 @@ extension Tasks : Identifiable {
             $0.updateDate! < $1.updateDate!
         }
     }
-
     public var leftDay : Int {getTaskDayLeft(day:NowORNext)}
     public var leftPages : Int64 {getPagesLeft(progress: progressPages)}
     public var progressPercent : Double {progressPercentage()}

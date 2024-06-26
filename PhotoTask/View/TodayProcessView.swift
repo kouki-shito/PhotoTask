@@ -13,7 +13,8 @@ struct TodayProcessView: View {
     @Environment(\.managedObjectContext) var viewContext
     @Environment(\.dismiss) private var dismiss
     @Binding var naviPath : [NaviTask]
-    
+    @FocusState var isFocused : Bool
+
     @State private var isPresentedCameraView = false
     @State private var image: UIImage?
     @State private var didPages : Int = 0
@@ -30,6 +31,9 @@ struct TodayProcessView: View {
     var body: some View {
 
         VStack(){
+
+            //MARK: - Result Set Section
+
             Spacer()
             Text("よく頑張りました!")
                 .font(.title2)
@@ -132,12 +136,31 @@ struct TodayProcessView: View {
                 .padding(.top,15)
                 .frame(maxWidth: .infinity,alignment: .center)
 
+            //MARK: - Memo Section
+
                 Form{
                     ZStack(alignment:.topLeading) {
                         TextEditor(text: Binding<String>(
                             get: { textMemo },
                             set: { textMemo = String($0.prefix(221)) }
                         ))
+                            .focused($isFocused)
+                            .toolbar(){
+                                ToolbarItemGroup(placement: .keyboard){
+                                    HStack{
+                                        Button(){
+                                            isFocused.toggle()
+                                        }label: {
+                                            Image(systemName: "checkmark")
+                                                .foregroundStyle(.green)
+                                                .bold()
+                                                .contentShape(Rectangle())
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity,alignment: .trailing)
+                                }
+                            }
+
                             .padding()
                             .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(.gray).opacity(0.2))
                             .frame(maxWidth: .infinity,minHeight: 200)

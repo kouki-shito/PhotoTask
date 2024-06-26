@@ -12,6 +12,7 @@ struct tutorialChildView: View {
     @State var index : Int
 
     var body: some View {
+
         VStack(spacing:25){
             Image("\(Tutorial.Imgtitle[index])")
                 .resizable()
@@ -28,6 +29,7 @@ struct tutorialChildView: View {
         }
         .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
         .padding(.horizontal)
+        
     }
 }
 

@@ -36,30 +36,19 @@ struct AddTaskView: View {
     @FocusState var isFocused : Bool
 
     @Binding var naviPath : [NaviTask]
-    @State var taskNameField : String = ""
-    @State var selectStartDate : Date = Date().startOfDay
-    @State var selectEndDate : Date = Date().startOfDay.nextDay
-    @State var sliderPageNum : Double = 0
-    @State var isSliderEditting : Bool = false
-    @State var pageField : String = "0"
-    @State var isdayPageSetting : DayBool = DayBool(
-
-        monday: true,
-        tuesday: true,
-        wednesday: true,
-        thursday: true,
-        friday: true,
-        saturday: true,
-        sunday: true
-
-    )
+    @State private var taskNameField : String = ""
+    @State private var selectStartDate : Date = Date.now.startOfDay
+    @State private var selectEndDate : Date = Date.now.startOfDay.nextDay
+    @State private var sliderPageNum : Double = 0
+    @State private var isSliderEditting : Bool = false
+    @State private var pageField : String = "0"
     @State private var image: UIImage?
     @State private var selectedImage : PhotosPickerItem?
     @State private var isPresentedPhotoPicker = false
     @State private var isPresentedCameraView = false
 
-    let UIIFGeneratorLight = UIImpactFeedbackGenerator(style: .light)
-    let UISFGenerator = UISelectionFeedbackGenerator()
+    private let UIIFGeneratorLight = UIImpactFeedbackGenerator(style: .light)
+    private let UISFGenerator = UISelectionFeedbackGenerator()
 
     var body: some View {
 
@@ -68,7 +57,9 @@ struct AddTaskView: View {
             Color.gray.opacity(0.1)
                 .frame(maxWidth: .infinity,maxHeight: .infinity)
                 .ignoresSafeArea()
+
             ScrollView(.vertical){
+                //MARK: - Task Name Section
                 VStack{
 
                     TextField("タスク名称", text: $taskNameField)
@@ -90,8 +81,10 @@ struct AddTaskView: View {
                                 .frame(maxWidth: .infinity,alignment: .trailing)
                             }
                         }
-
+                    
                     Divider()
+
+                    //MARK: - Task Date Section
 
                     HStack(spacing:0) {
                         Text("期間")
@@ -134,6 +127,8 @@ struct AddTaskView: View {
                     .padding(.top,10)
 
                     Divider()
+                    
+                    //MARK: - Pages Section
 
                     HStack(spacing:0){
 
@@ -186,103 +181,6 @@ struct AddTaskView: View {
                     .padding(.top,10)
 
                     Divider()
-
-//                    VStack {
-//                        Text("学習できる曜日の設定")
-//                            .font(.title3)
-//                            .frame(maxWidth: .infinity,alignment: .leading)
-//                            .bold()
-//                            .padding(.top,10)
-//
-//
-//
-//
-//                        Toggle(isOn: $isdayPageSetting.monday) {
-//                            Text("月曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.monday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//
-//                        Toggle(isOn: $isdayPageSetting.tuesday) {
-//                            Text("火曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.tuesday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//
-//                        Toggle(isOn: $isdayPageSetting.wednesday) {
-//                            Text("水曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.wednesday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//
-//                        Toggle(isOn: $isdayPageSetting.thursday) {
-//                            Text("木曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.thursday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//
-//                        Toggle(isOn: $isdayPageSetting.friday) {
-//                            Text("金曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.friday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//
-//                        Toggle(isOn: $isdayPageSetting.saturday) {
-//                            Text("土曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.saturday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//
-//                        Toggle(isOn: $isdayPageSetting.sunday) {
-//                            Text("日曜日")
-//                                .font(.system(.title2, design: .rounded))
-//                                .fontWeight(.heavy)
-//                                .foregroundColor(isdayPageSetting.sunday ? .blue : .black.opacity(0.3))
-//                                .frame(maxWidth: .infinity,alignment: .leading)
-//
-//                        }
-//                        .padding(.leading,10)
-//                        .padding(.top,10)
-//                        .toggleStyle(.switch)
-//                    }
-//                    .padding(.leading,5)
-//                    .frame(maxWidth: .infinity,alignment: .leading)
 
                     Spacer()
                 }
@@ -363,6 +261,8 @@ struct AddTaskView: View {
         }
     }
 }
+
+//MARK: -Extent Func Section
 
 extension AddTaskView{
 

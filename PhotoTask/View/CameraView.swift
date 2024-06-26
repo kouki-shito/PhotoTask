@@ -1,6 +1,7 @@
 import SwiftUI
 
 public struct CameraView: UIViewControllerRepresentable {
+    
     @Binding private var image: UIImage?
 
     @Environment(\.dismiss) private var dismiss

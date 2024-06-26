@@ -15,13 +15,15 @@ struct BeforeProcessView: View {
     @State private var TodaysStatus : Bool = false
 
     @FetchRequest(sortDescriptors: [])
-    var tasks : FetchedResults<Tasks>
+    private var tasks : FetchedResults<Tasks>
 
     var body: some View {
 
         ScrollView(.vertical) {
 
             VStack(spacing:0){
+
+                //MARK: -Before After Image Section
 
                     HStack(spacing:0){
                         Spacer()
@@ -77,7 +79,9 @@ struct BeforeProcessView: View {
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.horizontal)
-                    
+
+                //MARK: - Pages Section
+
                 VStack(spacing:0){
                         Text("この日の成果は")
                             .font(.title)
@@ -112,6 +116,8 @@ struct BeforeProcessView: View {
                     .frame(maxWidth:.infinity,alignment: .center)
                     .padding(.top,30)
                     .padding(.bottom,10)
+                
+                //MARK: - Memo Section
 
                     VStack{
                         ZStack(alignment:.topLeading) {

@@ -25,8 +25,13 @@ struct HomeView: View {
             
             List(){
                 ForEach(tasks){ i in
+
                     Section {
+
                         HStack(spacing:0){
+                            
+                            //MARK: - Thumbnail Section
+
                             RoundedRectangle(cornerRadius: 20)
                                 .scaledToFit()
                                 .frame(width: 80)
@@ -40,9 +45,11 @@ struct HomeView: View {
                                 .clipped()
                                 .clipShape(RoundedRectangle(cornerRadius: 10))
                                 .padding(.trailing,5)
+
                             VStack(spacing:0) {
 
-                                //MARK: - name and left
+                                //MARK: - Name & Day Section
+
                                 HStack(spacing:0) {
 
                                     Text(i.taskName ?? "")//MAX3
@@ -81,8 +88,10 @@ struct HomeView: View {
 
                                 Divider()
 
-                                HStack(spacing:0) {
 
+                                HStack(spacing:0) {
+                                    
+                                    //MARK: - Left Pages Section
                                     if i.leftPages > 0{
                                         
                                         Text("あと\(i.leftPages)ページ")
@@ -104,8 +113,11 @@ struct HomeView: View {
                                     }
 
                                     Spacer()
+                                    
+                                    //MARK: - Today Quota Section
 
                                     HStack(spacing:0) {
+
                                         if checkTodayProgress(tasks: i) != 0{
 
                                             Image(systemName: "checkmark.circle.fill")
@@ -200,6 +212,8 @@ struct HomeView: View {
         }
     }
 }
+
+//MARK: -Extent Func Section
 
 extension HomeView{
 
