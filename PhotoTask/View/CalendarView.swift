@@ -14,7 +14,7 @@ struct CalendarView: View {
 
     @Binding var naviPath : [NaviTask]
     @State private var days : [Date] = []
-    @State private var date : Date = Date.now
+    @State private var date : Date = Date.now.startOfDay
     @State private var progressTemp : Int64 = 0
     @State var customAlert = false
 

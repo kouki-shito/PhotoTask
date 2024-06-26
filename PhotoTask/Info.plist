@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>カメラを利用するために許可が必要です</string>
+	<string>カメラの使用には許可が必要です</string>
 </dict>
 </plist>
