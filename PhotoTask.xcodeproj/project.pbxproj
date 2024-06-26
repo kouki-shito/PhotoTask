@@ -16,6 +16,13 @@
 		1E28886D2C27F959003ACB10 /* TodaysTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888692C27F959003ACB10 /* TodaysTask+CoreDataProperties.swift */; };
 		1E2888712C280A40003ACB10 /* tutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888702C280A40003ACB10 /* tutorialView.swift */; };
 		1E2888732C280BEE003ACB10 /* tutorialChildView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888722C280BEE003ACB10 /* tutorialChildView.swift */; };
+		1E2888762C2AA3FA003ACB10 /* TutorialA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888752C2AA3FA003ACB10 /* TutorialA.swift */; };
+		1E2888782C2AA40F003ACB10 /* TutorialB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888772C2AA40F003ACB10 /* TutorialB.swift */; };
+		1E28887A2C2AA424003ACB10 /* TutorialC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888792C2AA424003ACB10 /* TutorialC.swift */; };
+		1E28887C2C2AA431003ACB10 /* TutorialD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E28887B2C2AA431003ACB10 /* TutorialD.swift */; };
+		1E28887E2C2AA43E003ACB10 /* TutorialE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E28887D2C2AA43E003ACB10 /* TutorialE.swift */; };
+		1E2888802C2AA44D003ACB10 /* TutorialF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E28887F2C2AA44D003ACB10 /* TutorialF.swift */; };
+		1E2888822C2AA458003ACB10 /* TutorialG.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E2888812C2AA458003ACB10 /* TutorialG.swift */; };
 		1E5A9E5D2C1EF9A9005FD884 /* PhotoTaskApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9E5C2C1EF9A9005FD884 /* PhotoTaskApp.swift */; };
 		1E5A9E5F2C1EF9A9005FD884 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A9E5E2C1EF9A9005FD884 /* ContentView.swift */; };
 		1E5A9E612C1EF9AB005FD884 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1E5A9E602C1EF9AB005FD884 /* Assets.xcassets */; };
@@ -63,6 +70,13 @@
 		1E2888692C27F959003ACB10 /* TodaysTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodaysTask+CoreDataProperties.swift"; path = "../../TodaysTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1E2888702C280A40003ACB10 /* tutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tutorialView.swift; sourceTree = "<group>"; };
 		1E2888722C280BEE003ACB10 /* tutorialChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tutorialChildView.swift; sourceTree = "<group>"; };
+		1E2888752C2AA3FA003ACB10 /* TutorialA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialA.swift; sourceTree = "<group>"; };
+		1E2888772C2AA40F003ACB10 /* TutorialB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialB.swift; sourceTree = "<group>"; };
+		1E2888792C2AA424003ACB10 /* TutorialC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialC.swift; sourceTree = "<group>"; };
+		1E28887B2C2AA431003ACB10 /* TutorialD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialD.swift; sourceTree = "<group>"; };
+		1E28887D2C2AA43E003ACB10 /* TutorialE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialE.swift; sourceTree = "<group>"; };
+		1E28887F2C2AA44D003ACB10 /* TutorialF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialF.swift; sourceTree = "<group>"; };
+		1E2888812C2AA458003ACB10 /* TutorialG.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialG.swift; sourceTree = "<group>"; };
 		1E5A9E592C1EF9A9005FD884 /* PhotoTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1E5A9E5C2C1EF9A9005FD884 /* PhotoTaskApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTaskApp.swift; sourceTree = "<group>"; };
 		1E5A9E5E2C1EF9A9005FD884 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +124,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1E2888742C2AA3D2003ACB10 /* TutorialAtoG */ = {
+			isa = PBXGroup;
+			children = (
+				1E2888752C2AA3FA003ACB10 /* TutorialA.swift */,
+				1E2888772C2AA40F003ACB10 /* TutorialB.swift */,
+				1E2888792C2AA424003ACB10 /* TutorialC.swift */,
+				1E28887B2C2AA431003ACB10 /* TutorialD.swift */,
+				1E28887D2C2AA43E003ACB10 /* TutorialE.swift */,
+				1E28887F2C2AA44D003ACB10 /* TutorialF.swift */,
+				1E2888812C2AA458003ACB10 /* TutorialG.swift */,
+			);
+			path = TutorialAtoG;
+			sourceTree = "<group>";
+		};
 		1E5A9E502C1EF9A9005FD884 = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +226,7 @@
 				1E2888642C27F2DA003ACB10 /* CustomAlertView.swift */,
 				1E2888702C280A40003ACB10 /* tutorialView.swift */,
 				1E2888722C280BEE003ACB10 /* tutorialChildView.swift */,
+				1E2888742C2AA3D2003ACB10 /* TutorialAtoG */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -335,18 +364,25 @@
 				1E5A9E902C1F0155005FD884 /* Persistent.swift in Sources */,
 				1EBD1FE42C24538000EB3B34 /* VersionExtention.swift in Sources */,
 				1ECD78C02C215CA6000B65F6 /* DateExtension.swift in Sources */,
+				1E2888762C2AA3FA003ACB10 /* TutorialA.swift in Sources */,
 				1E5A9ED92C1F0A34005FD884 /* CalendarView.swift in Sources */,
 				1E5A9E982C1F0397005FD884 /* TodayProcessView.swift in Sources */,
 				1E2888632C27F1C5003ACB10 /* BlurView.swift in Sources */,
 				1E5A9E9A2C1F03C1005FD884 /* BeforeProcessView.swift in Sources */,
 				1E2888732C280BEE003ACB10 /* tutorialChildView.swift in Sources */,
 				1E5A9E962C1F0350005FD884 /* AddTaskView.swift in Sources */,
+				1E2888802C2AA44D003ACB10 /* TutorialF.swift in Sources */,
 				1E2888712C280A40003ACB10 /* tutorialView.swift in Sources */,
 				1E5A9E5F2C1EF9A9005FD884 /* ContentView.swift in Sources */,
+				1E2888822C2AA458003ACB10 /* TutorialG.swift in Sources */,
 				1E2888582C25B9C1003ACB10 /* CameraView.swift in Sources */,
 				1E2888652C27F2DA003ACB10 /* CustomAlertView.swift in Sources */,
+				1E28887C2C2AA431003ACB10 /* TutorialD.swift in Sources */,
 				1E5A9E942C1F0322005FD884 /* HomeView.swift in Sources */,
 				1E28886A2C27F959003ACB10 /* Tasks+CoreDataClass.swift in Sources */,
+				1E28887E2C2AA43E003ACB10 /* TutorialE.swift in Sources */,
+				1E2888782C2AA40F003ACB10 /* TutorialB.swift in Sources */,
+				1E28887A2C2AA424003ACB10 /* TutorialC.swift in Sources */,
 				1E28886B2C27F959003ACB10 /* Tasks+CoreDataProperties.swift in Sources */,
 				1E28886C2C27F959003ACB10 /* TodaysTask+CoreDataClass.swift in Sources */,
 				1E28886D2C27F959003ACB10 /* TodaysTask+CoreDataProperties.swift in Sources */,

@@ -22,6 +22,7 @@ struct TodayProcessView: View {
     @State private var didFinishTask : Bool = false
     @State private var selectedImage : PhotosPickerItem?
     @State private var isPresentedPhotoPicker = false
+    @State private var todaysProgress : Int64 = 0
 
     @FetchRequest(sortDescriptors: [])
     var tasks : FetchedResults<Tasks>
@@ -52,14 +53,14 @@ struct TodayProcessView: View {
                         .onReceive(Just(didPageText), perform: { _ in
                             if didPageText.count > 4{
                                 didPageText = String(didPageText.prefix(4))
-                            }else if Int64(didPageText) ?? 0 > Int64((naviPath.last?.nowTask!.leftPages)!) {
-                                didPageText = String((naviPath.last?.nowTask!.leftPages) ?? 0)
+                            }else if Int64(didPageText) ?? 0 > Int64((naviPath.last?.nowTask!.leftPages)!) + Int64(todaysProgress){
+                                didPageText = String((naviPath.last?.nowTask!.leftPages) ?? 0 + Int64(todaysProgress))
                                 didPages = Int(didPageText) ?? 0
                             }else{
                                 didPages = Int(didPageText) ?? 0
                             }
                         })
-                    Text("/\(naviPath.last?.nowTask?.todayQuota ?? 0) ページ")
+                    Text("/\(naviPath.last?.nowTask?.todayQuota ?? 0 + Int(todaysProgress)) ページ")
                         .fontWeight(.bold)
                         .font(.title2)
                         .monospaced()
@@ -103,7 +104,7 @@ struct TodayProcessView: View {
 
                     if #available(iOS 17.0, *) {
                         Button(){
-                            if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) {
+                            if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) + Int64(todaysProgress) {
                                 didPages += 1
                             }
                         }label: {
@@ -116,7 +117,7 @@ struct TodayProcessView: View {
                         .padding(.leading,50)
                     } else {
                         Button(){
-                            if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) {
+                            if didPages < 9999 && didPages < Int64((naviPath.last?.nowTask!.leftPages)!) + Int64(todaysProgress) {
                                 didPages += 1
                             }
                         }label: {
@@ -171,41 +172,53 @@ struct TodayProcessView: View {
             }
 
             ToolbarItem(placement: .navigationBarTrailing){
+                if !didFinishTask{
+                    Menu{
 
-                Menu{
-
-                    Button(){
-                        if !didFinishTask{
+                        Button(){
                             isPresentedCameraView.toggle()
-                        }else{
-                            Save()
+                        }label: {
+
+                            HStack{
+                                Image(systemName: "camera")
+                                Text("写真を撮る")
+                                    .contentShape(Rectangle())
+                            }
+                        }
+
+                        Button{
+                            isPresentedPhotoPicker.toggle()
+                        }label: {
+
+                            HStack{
+                                Image(systemName: "photo.on.rectangle")
+                                Text("ギャラリーから選ぶ")
+                                    .contentShape(Rectangle())
+                            }
                         }
                     }label: {
-
-                        HStack{
-                            Image(systemName: "camera")
-                            Text("写真を撮る")
-                                .contentShape(Rectangle())
-                        }
+                        Image(systemName: "checkmark")
+                            .fontWeight(.medium)
+                            .padding(.trailing,5)
+                            .contentShape(Rectangle())
                     }
-
-                    Button{
-                        isPresentedPhotoPicker.toggle()
+                    .disabled(didPages > 0 ? false: true)
+                }else{
+                    
+                    Button(){
+                        Save()
                     }label: {
 
-                        HStack{
-                            Image(systemName: "photo.on.rectangle")
-                            Text("ギャラリーから選ぶ")
-                                .contentShape(Rectangle())
-                        }
+                        Image(systemName: "checkmark")
+                            .fontWeight(.medium)
+                            .padding(.trailing,5)
+                            .contentShape(Rectangle())
                     }
-                }label: {
-                    Image(systemName: "checkmark")
-                        .fontWeight(.medium)
-                        .padding(.trailing,5)
-                        .contentShape(Rectangle())
+                    .disabled(didPages > 0 ? false: true)
                 }
-                .disabled(didPages > 0 ? false: true)
+
+
+
             }
 
         }
@@ -218,6 +231,7 @@ struct TodayProcessView: View {
                 if i.updateDate == naviPath.last?.selectingDate{
                     didPages = Int(i.todayProgress)
                     textMemo = i.dailyMemo ?? ""
+                    todaysProgress = Int64(i.todayProgress)
                     didFinishTask = true
                 }
             }
@@ -234,9 +248,6 @@ struct TodayProcessView: View {
                 guard let uiImage = UIImage(data: data) else { return }
                 image = uiImage
             }
-        }
-        .onChange(of: textMemo){ _ in
-            print(textMemo)
         }
         .fullScreenCover(isPresented: $isPresentedCameraView){
             CameraView(image: $image).ignoresSafeArea()
@@ -265,6 +276,7 @@ extension TodayProcessView{
             if i.updateDate == naviPath.last?.selectingDate{
 
                 i.todayProgress = Int64(didPages)
+                i.dailyMemo = textMemo
 
                 do{
                     try viewContext.save()

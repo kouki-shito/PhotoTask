@@ -21,6 +21,7 @@ struct NaviTask : Hashable {
 
 struct ContentView: View {
     @State private var naviPath : [NaviTask] = []
+    @State private var isQuestion : Bool = false
     @Environment(\.managedObjectContext) var viewContext
 
     @FetchRequest(sortDescriptors: [])
@@ -41,18 +42,17 @@ struct ContentView: View {
                             
                         }
                     }
-//                    ToolbarItem(placement: .topBarLeading){
-//                        Button(){
-//
-//                        }label: {
-//                            Image(systemName: "questionmark")
-//                                .bold()
-//                                .contentShape(Circle())
-//
-//                        }
-//                    }
+                    ToolbarItem(placement: .topBarLeading){
+                        Button(){
+                            isQuestion.toggle()
+                        }label: {
+                            Image(systemName: "questionmark")
+                                .bold()
+                                .contentShape(Circle())
+
+                        }
+                    }
                 }
-            
                 .navigationTitle("現在のタスク")
                 .navigationDestination(for: NaviTask.self){ value in
 
@@ -73,8 +73,12 @@ struct ContentView: View {
                             .navigationBarBackButtonHidden()
                     }
                 }
+                .fullScreenCover(isPresented: $isQuestion){
+                    tutorialView()
+                }
         }
-        
+
+
     }
 
 }

@@ -8,12 +8,26 @@
 import SwiftUI
 
 struct tutorialChildView: View {
-    
-    @State var tutorial : Tutorial = Tutorial()
+
     @State var index : Int
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing:25){
+            Image("\(Tutorial.Imgtitle[index])")
+                .resizable()
+                .scaledToFit()
+                .frame(maxWidth: .infinity,alignment: .center)
+            Text("\(Tutorial.titleText[index])")
+                .font(.title)
+                .bold()
+            Text("\(Tutorial.description[index])")
+                .font(.title3)
+                .fontWeight(.thin)
+                .multilineTextAlignment(.center)
+            Spacer()
+        }
+        .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .center)
+        .padding(.horizontal)
     }
 }
 
