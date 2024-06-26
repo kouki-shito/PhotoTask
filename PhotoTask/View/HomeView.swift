@@ -23,7 +23,7 @@ struct HomeView: View {
                 .frame(maxWidth: .infinity,maxHeight: .infinity)
                 .ignoresSafeArea()
             
-            List(){
+            List{
                 ForEach(tasks){ i in
 
                     Section {
@@ -34,6 +34,7 @@ struct HomeView: View {
 
                             RoundedRectangle(cornerRadius: 20)
                                 .scaledToFit()
+                                .foregroundStyle(.black)
                                 .frame(width: 80)
                                 .overlay(alignment: .center){
                                     if let photo = i.thumbnailPhoto{
@@ -58,6 +59,7 @@ struct HomeView: View {
                                         .bold()
                                         .padding(.bottom,5)
                                         .lineLimit(3)
+                                        .foregroundStyle(.black)
 
                                     Spacer()
 
@@ -68,6 +70,7 @@ struct HomeView: View {
                                                 .font(.caption2)
                                                 .padding(.leading,1)
                                                 .padding(.trailing,3)
+                                                .foregroundStyle(.black)
                                             Text("\(i.leftDay)") //MAX4
                                                 .fixedSize(horizontal: false, vertical: true)
                                                 .bold()
@@ -75,9 +78,11 @@ struct HomeView: View {
                                                 .font(.caption)
                                                 .lineLimit(1)
                                                 .padding(.trailing,3)
+
                                             Text("日")
                                                 .fixedSize(horizontal: true, vertical: false)
                                                 .font(.caption2)
+                                                .foregroundStyle(.black)
                                         }
                                         .padding(.top)
                                         .padding(.bottom)
@@ -100,6 +105,7 @@ struct HomeView: View {
                                             .padding(.top)
                                             .padding(.bottom,5)
                                             .lineLimit(1)
+                                            .foregroundStyle(.black)
 
                                     }else{
                                         Text("完了")
@@ -110,6 +116,7 @@ struct HomeView: View {
                                             .bold()
                                             .padding(.leading,2)
                                             .lineLimit(1)
+                                            .foregroundStyle(.black)
                                     }
 
                                     Spacer()
@@ -136,6 +143,7 @@ struct HomeView: View {
                                             .padding(.top)
                                             .padding(.bottom,5)
                                             .lineLimit(1)
+                                            .foregroundStyle(.black)
 
                                         HStack(spacing:0) {
                                             Text(checkTodayProgress(tasks: i) != 0 ? "\(checkTodayProgress(tasks: i))" : "\(i.todayQuota)")//MAX 7
@@ -144,6 +152,7 @@ struct HomeView: View {
                                                 .bold()
                                                 .padding(.top)
                                                 .padding(.bottom,5)
+                                                .foregroundStyle(.black)
                                             Text("P")
                                                 .fixedSize(horizontal: true, vertical: false)
                                                 .font(.callout)
@@ -163,7 +172,7 @@ struct HomeView: View {
                             .padding(.horizontal,6)
 
                         }
-                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(.white))
+                        .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(Color.white))
                         .frame(maxWidth: .infinity)
                         .padding(.horizontal,2)
                         .padding(.vertical,2)
@@ -175,12 +184,11 @@ struct HomeView: View {
                             backToIconStateImg(state: i.taskState!)
                                 .foregroundStyle(backToIconStateColor(state: i.taskState!))
                             Text(i.taskState!)
+                                .foregroundStyle(.primary)
                         }
                     }
-
-
+                    .listRowBackground(Color.white)
                 }
-
                 .onDelete(perform: deleteTask)
             }
             .frame(maxWidth: .infinity)

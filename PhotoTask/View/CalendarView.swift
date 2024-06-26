@@ -42,9 +42,10 @@ struct CalendarView: View {
                 HStack {
                     ForEach(daysOfWeek.indices,id: \.self){ i in
                         Text(daysOfWeek[i])
+                            .foregroundStyle(.primary)
                             .fontWeight(.heavy)
                             .frame(maxWidth: .infinity)
-                            .foregroundStyle(i == 0 || i == 6 ? .red : .black)
+                            .foregroundStyle(i == 0 || i == 6 ? .red : .primary)
                     }
                 }
                 .padding(.top,5)
@@ -56,6 +57,7 @@ struct CalendarView: View {
                     ForEach(days,id: \.self){ day in
                         if day.monthInt != date.monthInt {
                             Text("")
+                                .foregroundStyle(.primary)
                                 .border(Color.gray.opacity(0.1))
                                 .font(.subheadline)
                                 .fontWeight(.light)
@@ -71,7 +73,7 @@ struct CalendarView: View {
                                         Text(day.formatted(.dateTime.day()))
                                             .font(.subheadline)
                                             .fontWeight(.light)
-                                            .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .black)
+                                            .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .primary)
                                             .frame(maxWidth: .infinity,minHeight: 80,alignment: .topLeading)
                                             .padding(.top,5)
                                             .monospaced()
@@ -90,6 +92,7 @@ struct CalendarView: View {
                                     .clipped()
 
                                 Text(navtask?.everydayQuotaArray(day: day) ?? "")
+                                    .foregroundStyle(.primary)
 
                         }
                             .contentShape(Rectangle())
@@ -201,6 +204,7 @@ struct CalendarView: View {
                     Text(getNowYearMonth())
                         .fontWeight(.medium)
                         .monospaced()
+                        .foregroundStyle(.primary)
 
                     Button(){
                         date = Calendar.current.date(byAdding: .month, value: 1, to: date)!
@@ -225,6 +229,7 @@ struct CalendarView: View {
                         HStack{
                             Image(systemName: "arrowshape.turn.up.backward.badge.clock.fill")
                             Text("現在に戻る")
+                                .foregroundStyle(.primary)
                                 .contentShape(Rectangle())
                         }
                     }
@@ -235,6 +240,7 @@ struct CalendarView: View {
                         HStack{
                             Image(systemName: "bookmark.fill")
                             Text("開始日に戻る")
+                                .foregroundStyle(.primary)
                                 .contentShape(Rectangle())
                         }
 

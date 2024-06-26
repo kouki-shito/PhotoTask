@@ -11,23 +11,6 @@ import Combine
 import CoreData
 import PhotosUI
 
-struct DayBool{
-
-    var monday : Bool
-
-    var tuesday :Bool
-
-    var wednesday : Bool
-
-    var thursday : Bool
-
-    var friday : Bool
-
-    var saturday : Bool
-
-    var sunday : Bool
-
-}
 
 struct AddTaskView: View {
     
@@ -61,13 +44,14 @@ struct AddTaskView: View {
             ScrollView(.vertical){
 
                 //MARK: - Task Name Section
-                
+
                 VStack{
 
                     TextField("タスク名称", text: $taskNameField)
                         .font(.title)
                         .fontWeight(.heavy)
                         .focused($isFocused)
+                        .foregroundStyle(.primary)
                         .toolbar(){
                             ToolbarItemGroup(placement: .keyboard){
                                 HStack{
@@ -93,6 +77,7 @@ struct AddTaskView: View {
                             .font(.title3)
                             .padding(.leading,5)
                             .bold()
+                            .foregroundStyle(.primary)
 
                         Spacer()
                         DatePicker(
@@ -111,6 +96,7 @@ struct AddTaskView: View {
                             .fontWeight(.medium)
                             .padding(.leading,10)
                             .fixedSize()
+                            .foregroundStyle(.primary)
 
                         DatePicker(
                             "Date",
@@ -138,6 +124,7 @@ struct AddTaskView: View {
                             .font(.title3)
                             .padding(.leading,3)
                             .bold()
+                            .foregroundStyle(.primary)
                         Spacer()
 
                         HStack(spacing:0) {
@@ -159,6 +146,7 @@ struct AddTaskView: View {
                             TextField("4桁",text: $pageField)
                                 .fixedSize(horizontal: true, vertical: false)
                                 .font(.title3)
+                                .foregroundStyle(.primary)
                                 .monospaced()
                                 .bold()
                                 .focused($isFocused)
@@ -220,6 +208,7 @@ struct AddTaskView: View {
                         HStack{
                             Image(systemName: "camera")
                             Text("写真を撮る")
+                                .foregroundStyle(.primary)
                                 .contentShape(Rectangle())
                         }
                     }
@@ -231,11 +220,13 @@ struct AddTaskView: View {
                         HStack{
                             Image(systemName: "photo.on.rectangle")
                             Text("ギャラリーから選ぶ")
+                                .foregroundStyle(.primary)
                                 .contentShape(Rectangle())
                         }
                     }
                 }label: {
                     Text("保存")
+                        .foregroundStyle(.primary)
                         .font(.title2)
                         .fontWeight(.heavy)
                         .padding(.trailing,5)

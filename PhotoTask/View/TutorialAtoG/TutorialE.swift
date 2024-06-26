@@ -26,6 +26,7 @@ struct TutorialE: View {
 
             Text("\(Tutorial.descriptionAtoG[4])")
                 .font(.title2)
+                .foregroundStyle(.primary)
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
             Spacer()

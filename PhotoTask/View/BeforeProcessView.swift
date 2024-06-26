@@ -28,11 +28,13 @@ struct BeforeProcessView: View {
                     HStack(spacing:0){
                         Spacer()
                         Text("Before")
+                            .foregroundStyle(.primary)
                             .font(.title3)
                             .fontWeight(.bold)
                             .padding(.trailing,80)
                         Spacer()
                         Text("After")
+                            .foregroundStyle(.primary)
                             .font(.title3)
                             .fontWeight(.bold)
                         Spacer()
@@ -86,6 +88,7 @@ struct BeforeProcessView: View {
                         Text("この日の成果は")
                             .font(.title)
                             .fontWeight(.light)
+                            .foregroundStyle(.primary)
 
                         HStack(spacing:0) {
                             Spacer()
@@ -93,10 +96,12 @@ struct BeforeProcessView: View {
                                 .font(.largeTitle)
                                 .fontWeight(.bold)
                                 .monospaced()
+                                .foregroundStyle(.primary)
                                 .lineLimit(1)
                             Text("ページ")
                                 .fixedSize(horizontal: false, vertical: true)
                                 .font(.title3)
+                                .foregroundStyle(.primary)
                                 .fontWeight(.bold)
                                 .padding(.top,5)
                                 .padding(.leading,5)
@@ -109,6 +114,7 @@ struct BeforeProcessView: View {
                         .frame(maxWidth: .infinity)
 
                         Text("よく頑張りました！")
+                            .foregroundStyle(.primary)
                             .font(.title)
                             .fontWeight(.light)
 
@@ -125,6 +131,7 @@ struct BeforeProcessView: View {
                                 get: { textMemo },
                                 set: { textMemo = String($0.prefix(228)) }
                             ))
+                                .foregroundStyle(.primary)
                                 .padding()
                                 .background(RoundedRectangle(cornerRadius: 10).foregroundStyle(.gray).opacity(0.2))
                                 .frame(maxWidth: .infinity,minHeight: 200)

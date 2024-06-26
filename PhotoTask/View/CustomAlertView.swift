@@ -24,8 +24,10 @@ struct CustomAlertView : View {
 
                 Text("全てのタスクが完了しました！")
                     .font(.title2)
+                    .foregroundStyle(.primary)
                     .fontWeight(.bold)
                 Text("よく頑張りました！成果を確認しましょう!")
+                    .foregroundStyle(.primary)
                 Button(){
                     withAnimation{
                         showAlert.toggle()

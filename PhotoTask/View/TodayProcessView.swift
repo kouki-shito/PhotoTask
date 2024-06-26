@@ -37,15 +37,18 @@ struct TodayProcessView: View {
             Spacer()
             Text("よく頑張りました!")
                 .font(.title2)
+                .foregroundStyle(.primary)
                 .fontWeight(.bold)
             Text("今日の成果を報告しましょう")
                 .font(.callout)
+                .foregroundStyle(.primary)
 
                 HStack(spacing:0){
                     
                     TextField("",text: $didPageText)
                         .keyboardType(.numberPad)
                         .fontWeight(.bold)
+                        .foregroundStyle(.primary)
                         .font(.title2)
                         .monospaced()
                         .padding(.top)
@@ -144,6 +147,7 @@ struct TodayProcessView: View {
                             get: { textMemo },
                             set: { textMemo = String($0.prefix(221)) }
                         ))
+                            .foregroundStyle(.primary)
                             .focused($isFocused)
                             .toolbar(){
                                 ToolbarItemGroup(placement: .keyboard){
@@ -167,6 +171,7 @@ struct TodayProcessView: View {
                         if self.textMemo.isEmpty {
                             HStack {
                                 Text("気になることを入力してみよう").opacity(0.25)
+                                    .foregroundStyle(.primary)
                                     .padding()
                                     .padding(.top,8)
 
@@ -205,6 +210,7 @@ struct TodayProcessView: View {
                             HStack{
                                 Image(systemName: "camera")
                                 Text("写真を撮る")
+                                    .foregroundStyle(.primary)
                                     .contentShape(Rectangle())
                             }
                         }
@@ -216,6 +222,7 @@ struct TodayProcessView: View {
                             HStack{
                                 Image(systemName: "photo.on.rectangle")
                                 Text("ギャラリーから選ぶ")
+                                    .foregroundStyle(.primary)
                                     .contentShape(Rectangle())
                             }
                         }

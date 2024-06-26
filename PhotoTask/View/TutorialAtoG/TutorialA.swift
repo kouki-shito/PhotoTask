@@ -19,6 +19,7 @@ struct TutorialA: View {
                 .frame(maxWidth: .infinity,alignment: .center)
             Text("\(Tutorial.descriptionAtoG[0])")
                 .font(.title2)
+                .foregroundStyle(.primary)
                 .fontWeight(.semibold)
                 .multilineTextAlignment(.center)
             Spacer()
