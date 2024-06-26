@@ -185,6 +185,8 @@ struct BeforeProcessView: View {
     }
 }
 
+//MARK: -Extent Func Section
+
 extension BeforeProcessView{
 
     func save(){

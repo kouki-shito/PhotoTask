@@ -28,6 +28,7 @@ struct ContentView: View {
     private var tasks : FetchedResults<Tasks>
 
     var body: some View {
+
         NavigationStack(path: $naviPath){
 
             HomeView(naviPath: $naviPath)
@@ -82,6 +83,8 @@ struct ContentView: View {
     }
 
 }
+
+//MARK: -Extent Func Section
 
 extension ContentView{
 

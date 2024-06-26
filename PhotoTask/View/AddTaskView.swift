@@ -59,7 +59,9 @@ struct AddTaskView: View {
                 .ignoresSafeArea()
 
             ScrollView(.vertical){
+
                 //MARK: - Task Name Section
+                
                 VStack{
 
                     TextField("タスク名称", text: $taskNameField)
