@@ -75,11 +75,6 @@ extension Date{
         return formatter.string(from: self)
     }
 
-//    func showNowTime(){
-//
-//        print(self)
-//
-//    }
 
     
 }

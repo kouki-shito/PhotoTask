@@ -124,7 +124,6 @@ struct CalendarView: View {
 
                 }
 
-
                 Spacer()
             }
             .frame(maxWidth: .infinity,maxHeight: .infinity)
