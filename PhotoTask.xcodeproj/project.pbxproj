@@ -64,10 +64,10 @@
 		1E2888592C25BAD4003ACB10 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1E2888622C27F1C5003ACB10 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
 		1E2888642C27F2DA003ACB10 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
-		1E2888662C27F959003ACB10 /* Tasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Tasks+CoreDataClass.swift"; path = "../../Tasks+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1E2888672C27F959003ACB10 /* Tasks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Tasks+CoreDataProperties.swift"; path = "../../Tasks+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		1E2888682C27F959003ACB10 /* TodaysTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodaysTask+CoreDataClass.swift"; path = "../../TodaysTask+CoreDataClass.swift"; sourceTree = "<group>"; };
-		1E2888692C27F959003ACB10 /* TodaysTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TodaysTask+CoreDataProperties.swift"; path = "../../TodaysTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1E2888662C27F959003ACB10 /* Tasks+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tasks+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1E2888672C27F959003ACB10 /* Tasks+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Tasks+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		1E2888682C27F959003ACB10 /* TodaysTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodaysTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1E2888692C27F959003ACB10 /* TodaysTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TodaysTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1E2888702C280A40003ACB10 /* tutorialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tutorialView.swift; sourceTree = "<group>"; };
 		1E2888722C280BEE003ACB10 /* tutorialChildView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tutorialChildView.swift; sourceTree = "<group>"; };
 		1E2888752C2AA3FA003ACB10 /* TutorialA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialA.swift; sourceTree = "<group>"; };
@@ -550,7 +550,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PhotoTask/Preview Content\"";
 				DEVELOPMENT_TEAM = QL9QJ536JT;
 				ENABLE_PREVIEWS = YES;
@@ -587,7 +587,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"PhotoTask/Preview Content\"";
 				DEVELOPMENT_TEAM = QL9QJ536JT;
 				ENABLE_PREVIEWS = YES;

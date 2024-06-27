@@ -2,7 +2,7 @@
 //  TodaysTask+CoreDataProperties.swift
 //  PhotoTask
 //
-//  Created by 市東 on 2024/06/21.
+//  Created by 市東 on 2024/06/23.
 //
 //
 
@@ -20,7 +20,7 @@ extension TodaysTask {
     @NSManaged public var dailyPhoto: Data?
     @NSManaged public var updateDate: Date?
     @NSManaged public var todayProgress: Int64
-    @NSManaged public var tasks: Tasks?
+    @NSManaged public var task: Tasks?
 
 }
 
