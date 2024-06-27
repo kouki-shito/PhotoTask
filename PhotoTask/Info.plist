@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-	<string>カメラの使用には許可が必要です</string>
+	<string>アプリは1日の進捗登録に写真の撮影または登録を必要とします</string>
 </dict>
 </plist>
