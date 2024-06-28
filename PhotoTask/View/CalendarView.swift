@@ -70,7 +70,7 @@ struct CalendarView: View {
                             ZStack{
                                 Rectangle()
                                     .overlay(alignment: .topLeading) {
-                                        Text(day.formatted(.dateTime.day()))
+                                        Text(getDateDay(day: day))
                                             .font(.subheadline)
                                             .fontWeight(.light)
                                             .foregroundStyle(Date.now.startOfDay == day.startOfDay ? .blue : .primary)
@@ -276,6 +276,14 @@ extension CalendarView {
 
         return formatter.string(from: date)
 
+    }
+
+    func getDateDay(day : Date) ->String{
+        formatter.dateFormat = DateFormatter.dateFormat(
+            fromTemplate: "d",
+            options: 0,
+            locale: Locale(identifier: "en_US_POSIX"))
+        return formatter.string(from: day)
     }
 
     func backColor(day:Date) -> Color{
