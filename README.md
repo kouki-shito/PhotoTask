@@ -29,6 +29,10 @@ __PhotoTask(フォトタスク)__ は、締め切りと合計ページ数を設�
 <img src="./ScreenShot/03.png" width="200"></img>
 <img src="./ScreenShot/04.png" width="200"></img>
 
+# AppStore
+
+[PhotoTaskのダウンロードリンクはこちら](https://apps.apple.com/jp/app/phototask-%E3%83%9A%E3%83%BC%E3%82%B8%E6%95%B0%E3%82%92%E8%87%AA%E5%8B%95%E9%80%86%E7%AE%97-%E6%88%90%E6%9E%9C%E3%82%92%E5%86%99%E7%9C%9F%E3%81%A7%E8%A8%98%E9%8C%B2/id6504877164)
+
 # お問い合わせ
 
 サービスの不具合や問題報告、その他お問い合わせは下記メールアドレスよりお願い致します。
